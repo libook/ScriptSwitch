@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Plugins>
+  <plugin name="记事本" showwindow="False">
+    <cmd>
+start notepad
+    </cmd>
+  </plugin>
+  <plugin name="换IP" showwindow="True">
+    <cmd>
+@echo off
+:start
+set/p num=请输入最后一段IP：
+if %num% LSS 221 goto bad
+if %num% GTR 230 goto bad
+@echo on
+netsh interface ip set address "Wi-Fi" static 219.218.22.%num% 255.255.255.0 219.218.22.1
+netsh interface ip set dns "Wi-Fi" static 219.218.18.18
+@echo off
+pause
+exit
+
+:bad
+echo 请输入221-230之间的数。
+goto start
+</cmd>
+  </plugin>
+</Plugins>
